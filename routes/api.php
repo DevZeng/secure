@@ -18,6 +18,7 @@ use Illuminate\Http\Request;
 //});
 Route::post('pay/notify','V1\OrderController@payNotify');
 Route::post('member/notify','V2\MemberController@memberNotify');
+Route::post('coupon/task','V3\CouponController@addCouponTask');
 Route::group(['prefix'=>'v1'],function (){
     Route::post('login','V1\WeChatController@login');
     Route::get('test','V1\WeChatController@test');
