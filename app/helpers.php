@@ -177,3 +177,27 @@ if (!function_exists('calculateDistance')){
         return $dist = $dist * $radius;
     }
 }
+
+/**
+ * 图片压缩
+ */
+if(!function_exists('ImageCompression')) {
+    function ImageCompression($photo, $ext, $radio)
+    {
+
+        $name = uniqid() . '.' . $ext;
+        switch ($ext) {
+            case 'jpg':
+            case 'jpeg':
+                $dst_im = imagecreatefromjpeg($photo);
+                imagejpeg($dst_im, '../public/uploads/pic/' . $name, $radio);
+                break;
+            case 'png':
+                $dst_im = imagecreatefrompng($photo);
+                imagepng($dst_im, '../public/uploads/pic/' . $name, $radio);
+                break;
+        }
+        imagedestroy($dst_im);
+        return 'uploads/pic/' . $name;
+    }
+}
