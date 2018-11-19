@@ -132,3 +132,25 @@ Route::group(['prefix'=>'v3'],function (){
     Route::get('store/product/type','V3\StoreController@getStoreProductType');
     Route::get('products','V3\ProductController@getProductsByType');
 });
+
+Route::group(['prefix'=>'v4'],function () {
+    Route::post('shlogin', 'v4\Sh_userinfoController@login');
+
+    Route::post('uploads', 'v4\Sh_systemController@upload');
+    Route::get('figure', 'v4\Sh_FigureController@index');
+
+    Route::get('shClassify', 'v4\Sh_goodsController@home_classify');
+    Route::get('shGoods', 'v4\Sh_goodsController@home_index');
+    Route::post('shGoods/Mes', 'v4\Sh_goodsController@getUserMes');
+    Route::get('shGoods/Photos', 'v4\Sh_goodsController@pic');
+    Route::post('shGoods/add', 'v4\Sh_goodsController@add');
+    Route::post('shGoods/edit', 'v4\Sh_goodsController@edit');
+    Route::get('shGoods/sold', 'v4\Sh_goodsController@sold');
+    Route::post('shGoods/delete', 'v4\Sh_goodsController@delete');
+    Route::post('shGoods/complain', 'v4\Sh_ComplainController@complain');
+
+    Route::post('shUser/Info', 'v4\Sh_userinfoController@info');
+    Route::post('shUser/Mes', 'v4\Sh_userinfoController@mes');
+    Route::post('shUser/Goods', 'v4\Sh_userinfoController@info_goods');
+    Route::post('shUser/Info/edit', 'v4\Sh_userinfoController@infoEdit');
+});
