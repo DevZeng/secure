@@ -179,3 +179,31 @@ Route::group(['prefix'=>'v3','middleware'=>'cross'],function (){
     Route::post('prize','V3\PrizeController@addPrize');
     Route::delete('prize','V3\PrizeController@delPrize');
 });
+
+Route::group(['prefix'=>'v4','middleware'=>'cross'],function () {
+    Route::get('figure', 'v4\Sh_FigureController@index');
+    Route::get('figure/add', 'v4\Sh_FigureController@add');
+    Route::get('figure/statusClick', 'v4\Sh_FigureController@status_click');
+    Route::post('figure/edit', 'v4\Sh_FigureController@edit');
+    Route::post('figure/del', 'v4\Sh_FigureController@del');
+
+    Route::get('shClassify', 'v4\Sh_goodsController@admin_classify');
+    Route::get('shClassify/add', 'v4\Sh_goodsController@classify_add');
+    Route::post('shClassify/edit', 'v4\Sh_goodsController@classfy_edit');
+    Route::post('shClassify/del', 'v4\Sh_goodsController@classfy_del');
+    Route::post('shClassify/click', 'v4\Sh_goodsController@classfy_click');
+
+    Route::get('shGoods', 'v4\Sh_goodsController@admin_index');
+    Route::get('shGoods/check', 'v4\Sh_goodsController@check');
+    Route::get('shGoods/pic', 'v4\Sh_goodsController@pic');
+    Route::post('shGoods/del', 'v4\Sh_goodsController@admin_del');
+
+
+    Route::get('shUserInfo', 'v4\Sh_userinfoController@index');
+    Route::get('shUserInfo/op', 'v4\Sh_userinfoController@operation');
+    Route::get('shUserInfo/search', 'v4\Sh_userinfoController@search');
+
+    Route::get('shComplainList', 'v4\Sh_ComplainController@complain_list');
+    Route::get('shComplainList/deal', 'v4\Sh_ComplainController@deal_complain');
+    Route::post('shComplainList/del', 'v4\Sh_ComplainController@complain_del');
+});
