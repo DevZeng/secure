@@ -76,6 +76,7 @@ trait StoreHandle
         }
         foreach ($categories as $category){
             $category->parent = StoreCategory::find($category->parent_id);
+            $category->parent_id = intval($category->parent_id);
         }
         return $categories;
     }

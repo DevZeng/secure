@@ -65,8 +65,9 @@ class StoreController extends Controller
     public function setHotStoreCategory()
     {
         $id = Input::get('id');
+        $hot = Input::get('hot',0);
         $data = [
-            'hot'=>1
+            'hot'=>$hot
         ];
         if ($this->handle->addStoreCategory($id,$data)){
             return jsonResponse([
