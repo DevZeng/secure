@@ -5,6 +5,7 @@ namespace App\Http\Controllers\v4;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Userinfo;
+use App\Http\Controllers\Controller;
 
 class Sh_userinfoController extends Controller
 {
