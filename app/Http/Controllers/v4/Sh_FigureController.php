@@ -4,6 +4,7 @@ namespace App\Http\Controllers\v4;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 
 class Sh_FigureController extends Controller
 {
