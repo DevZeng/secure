@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\v4;
+namespace app\Http\Controllers\v4;
 
 use App\Models\Userinfo;
 use Illuminate\Http\Request;
