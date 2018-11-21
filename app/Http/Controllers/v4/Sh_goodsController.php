@@ -6,6 +6,7 @@ use App\Models\Userinfo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use PHPUnit\Runner\Exception;
+use App\Http\Controllers\Controller;
 
 class Sh_goodsController extends Controller
 {
