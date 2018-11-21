@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\v4;
 
-use App\Models\Userinfo;
+use App\Modules\users\Userinfo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use PHPUnit\Runner\Exception;
