@@ -297,7 +297,8 @@ class OrderController extends Controller
         $user_id = getRedisData($post->token);
         $order_id = $post->order_id;
         $repay = $post->repay?$post->repay:0;
-        $user = WeChatUser::findOrFail($user_id);
+        $open_id = $post->open_id;
+//        $user = WeChatUser::findOrFail($user_id);
 //        dd($user);
         if ($repay){
             $order = Order::where('number', '=', $order_id)->first();
@@ -307,7 +308,7 @@ class OrderController extends Controller
                 ], 400);
             }
             //$price = Order::where('group_number', '=', $order_id)->sum('price');
-            $wxPay = getWxPay($user->open_id);
+            $wxPay = getWxPay($open_id);
             $data = $wxPay->pay($order_id, '购买商品', intval($order->price* 100) , $url,$post->getClientIp());
             $notify_id = $wxPay->getPrepayId();
             Order::where('number', '=', $order_id)->update(['notify_id' => $notify_id]);
@@ -329,7 +330,7 @@ class OrderController extends Controller
             ], 403);
         }
         $price = Order::where('group_number', '=', $order_id)->sum('price');
-        $wxPay = getWxPay($user->open_id);
+        $wxPay = getWxPay($open_id);
         $data = $wxPay->pay($order_id, '购买商品', intval($price * 100) , $url,$post->getClientIp());
         $notify_id = $wxPay->getPrepayId();
         Order::where('group_number', '=', $order_id)->update(['notify_id' => $notify_id]);
