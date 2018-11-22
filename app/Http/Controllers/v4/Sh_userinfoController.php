@@ -221,6 +221,12 @@ class Sh_userinfoController extends Controller
         $phone=$post->phone;
         $hid=$post->hid;
         $community=$post->community;
+        $check=DB::table('sh_userinfo')->where('openid',$openid)->value('id');
+        if($check){
+            return response()->json([
+                'msg'=>'success'
+            ]);
+        }
         $res=DB::table('sh_userinfo')->insert([
                'openid'=>$openid,'nickname'=>$nickname,'username'=>$username,'hid'=>$hid,'community'=>$community,'phone'=>$phone
             ]);
