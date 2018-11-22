@@ -471,7 +471,7 @@ class Sh_goodsController extends Controller
                 'msg'=>'未登录'
             ]);
         }
-        $res=DB::table('sh_goods')->where('id',$gid)->where('uid',$check)->delete();
+        $res=DB::table('sh_goods')->where('id',$gid)->delete();
         if($res){
             return response()->json([
                 'msg'=>'success'
