@@ -4,7 +4,8 @@ namespace App\Http\Controllers\v4;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Models\Userinfo;
+use App\Modules\users\Userinfo;
+use App\Http\Controllers\Controller;
 
 class Sh_userinfoController extends Controller
 {
@@ -220,6 +221,12 @@ class Sh_userinfoController extends Controller
         $phone=$post->phone;
         $hid=$post->hid;
         $community=$post->community;
+        $check=DB::table('sh_userinfo')->where('openid',$openid)->value('id');
+        if($check){
+            return response()->json([
+                'msg'=>'success'
+            ]);
+        }
         $res=DB::table('sh_userinfo')->insert([
                'openid'=>$openid,'nickname'=>$nickname,'username'=>$username,'hid'=>$hid,'community'=>$community,'phone'=>$phone
             ]);

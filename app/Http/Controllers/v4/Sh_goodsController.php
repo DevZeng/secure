@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\v4;
 
-use App\Models\Userinfo;
+use App\Modules\users\Userinfo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use PHPUnit\Runner\Exception;
+use App\Http\Controllers\Controller;
 
 class Sh_goodsController extends Controller
 {
@@ -470,7 +471,7 @@ class Sh_goodsController extends Controller
                 'msg'=>'未登录'
             ]);
         }
-        $res=DB::table('sh_goods')->where('id',$gid)->where('uid',$check)->delete();
+        $res=DB::table('sh_goods')->where('id',$gid)->delete();
         if($res){
             return response()->json([
                 'msg'=>'success'
