@@ -358,6 +358,24 @@ class OrderController extends Controller
             'data' => $data
         ]);
     }
+    public function getUserOrders()
+    {
+        $user_id = Input::get('user_id');
+        $state = Input::get('state', '');
+        $page = Input::get('page', 1);
+        $limit = Input::get('limit', 10);
+        $type = Input::get('type');
+        if ($type){
+            $order_id = $this->handle->getOrdersIdByType($type);
+        }else{
+            $order_id = null;
+        }
+        $data = $this->handle->getMyOrders($user_id, $page, $limit, $state,$order_id);
+        return jsonResponse([
+            'msg' => 'ok',
+            'data' => $data
+        ]);
+    }
 
     public function getOrders()
     {

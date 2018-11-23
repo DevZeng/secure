@@ -17,6 +17,7 @@ use Illuminate\Http\Request;
 //    return $request->user();
 //});
 Route::post('pay/notify','V1\OrderController@payNotify');
+Route::get('user/orders','V1\OrderController@getUserOrders');
 Route::post('member/notify','V2\MemberController@memberNotify');
 Route::post('coupon/task','V3\CouponController@addCouponTask');
 Route::group(['prefix'=>'v1'],function (){
