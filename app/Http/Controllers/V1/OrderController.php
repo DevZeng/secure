@@ -57,8 +57,8 @@ class OrderController extends Controller
                 $product = $this->handle->getProductById($stock->product_id);
                 $state = $price==0?'paid':'created';
                 $data = [
-                    'user_id' => $user_id,
-                    'number' => self::makePaySn($user_id),
+                    'open_id' => $user_id,
+                    'number' => self::makePaySn(rand(1,9999)),
                     'price' => $price,
                     'state' => $state,
                     'group_number' => $groupNumber,
@@ -140,8 +140,8 @@ class OrderController extends Controller
 //                    throw new \Exception('非法价格！');
 //                }
                 $data = [
-                    'user_id' => $user_id,
-                    'number' => self::makePaySn($user_id),
+                    'open_id' => $user_id,
+                    'number' => self::makePaySn(rand(1,9999)),
                     'price' => $price,
                     'state' => $state,
                     'group_number' => $groupNumber,
@@ -203,8 +203,8 @@ class OrderController extends Controller
             foreach ($storesId as $item) {
                 $price = 0;
                 $data = [
-                    'user_id' => $user_id,
-                    'number' => self::makePaySn($user_id),
+                    'open_id' => $user_id,
+                    'number' => self::makePaySn(rand(1,9999)),
                     'price' => 0,
                     'state' => 'created',
                     'group_number' => $groupNumber,
