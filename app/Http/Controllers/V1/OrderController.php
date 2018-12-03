@@ -29,7 +29,10 @@ class OrderController extends Controller
 
     public function createOrder(Request $post)
     {
-        $user_id = getRedisData($post->token);
+        $userData = getRedisData($post->token);
+        $userData = json_decode($userData);
+        $user_id = $userData['uid'];
+        $open_id = $userData['openid'];
         $address = Address::find($post->address);
         $card_promotion = $post->card_promotion ? $post->card_promotion : 0;
         $bargain_promotion = $post->bargain_promotion ? $post->bargain_promotion : 0;
@@ -57,7 +60,8 @@ class OrderController extends Controller
                 $product = $this->handle->getProductById($stock->product_id);
                 $state = $price==0?'paid':'created';
                 $data = [
-                    'open_id' => $user_id,
+                    'open_id' => $open_id,
+                    'user_id'=>$user_id,
                     'number' => self::makePaySn(rand(1,9999)),
                     'price' => $price,
                     'state' => $state,
@@ -140,7 +144,8 @@ class OrderController extends Controller
 //                    throw new \Exception('非法价格！');
 //                }
                 $data = [
-                    'open_id' => $user_id,
+                    'open_id' => $open_id,
+                    'user_id'=>$user_id,
                     'number' => self::makePaySn(rand(1,9999)),
                     'price' => $price,
                     'state' => $state,
@@ -203,7 +208,8 @@ class OrderController extends Controller
             foreach ($storesId as $item) {
                 $price = 0;
                 $data = [
-                    'open_id' => $user_id,
+                    'open_id' => $open_id,
+                    'user_id'=>$user_id,
                     'number' => self::makePaySn(rand(1,9999)),
                     'price' => 0,
                     'state' => 'created',
