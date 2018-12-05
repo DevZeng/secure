@@ -131,7 +131,9 @@ Route::group(['prefix'=>'v3'],function (){
     Route::post('share','V3\WeChatController@share');
     Route::get('stores','V3\StoreController@getStores');
     Route::get('store/product/type','V3\StoreController@getStoreProductType');
+    Route::get('coupons','V3\CouponController@getEnableCoupons');
     Route::get('products','V3\ProductController@getProductsByType');
+
 });
 
 Route::group(['prefix'=>'v4'],function () {

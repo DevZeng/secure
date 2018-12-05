@@ -21,14 +21,14 @@ class CouponController extends Controller
         $id = $post->id?$post->id:0;
         $data = [
             'store_id'=>getStoreId(),
-            'end'=>strtotime($post->end),
+            'end'=>0,
             'name'=>$post->name,
             'limit_price'=>$post->limit_price,
             'price'=>$post->price
         ];
         $result = $this->handle->addCoupon($id,$data);
         if ($result){
-            $this->handle->addCouponType($result,'storeCoupon');
+            $this->handle->addCouponType($result,'productCoupon');
             return jsonResponse([
                 'msg'=>'ok'
             ]);
@@ -60,6 +60,17 @@ class CouponController extends Controller
         $page = Input::get('page',1);
         $limit = Input::get('limit',10);
         $data = $this->handle->getCoupons($page,$limit);
+        $this->handle->formatCoupons($data['data']);
+        return jsonResponse([
+            'msg'=>'ok',
+            'data'=>$data
+        ]);
+    }
+    public function getEnableCoupons()
+    {
+        $page = Input::get('page',1);
+        $limit = Input::get('limit',10);
+        $data = $this->handle->getCoupons($page,$limit,0,1);
         $this->handle->formatCoupons($data['data']);
         return jsonResponse([
             'msg'=>'ok',
