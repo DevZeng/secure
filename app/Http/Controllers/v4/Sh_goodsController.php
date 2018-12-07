@@ -318,6 +318,7 @@ class Sh_goodsController extends Controller
         $price=$post->price;
         $portrait=$post->portrait;
         $nickname=$post->nickname;
+        $phone=$post->phone;
         $tag=uniqid();
         $now=time();
         $check=Userinfo::check($openid);
@@ -332,6 +333,7 @@ class Sh_goodsController extends Controller
                 'msg'=>'已被管理员禁止出售商品'
             ]);
         }
+         DB::table('sh_userinfo')->where('openid',$openid)->update(['phone'=>$phone]);
         $id=DB::table('sh_userinfo')->where('openid',$openid)->value('id');
         $res=DB::table('sh_goods')->insert(['name'=>$name,'uid'=>$id,'cid'=>$cid,'nickname'=>$nickname,'pic'=>$pic,
             'add_time'=>$now,'detail'=>$detail,'tag'=>$tag,'hid'=>$hid,'price'=>$price,'portrait'=>$portrait]);
