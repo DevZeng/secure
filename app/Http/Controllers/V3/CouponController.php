@@ -211,5 +211,12 @@ class CouponController extends Controller
                 'msg'=>'ok'
             ]);
         }
+        throw new \Exception('系统错误！');
+    }
+    public function addMemberUserCoupon()
+    {
+        $member = Input::get('member_id');
+        $end = Input::get('end');
+        $token = Input::get('token');
     }
 }
