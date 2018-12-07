@@ -23,7 +23,7 @@ class CouponController extends Controller
             'store_id'=>getStoreId(),
             'end'=>0,
             'name'=>$post->name,
-            'limit_price'=>$post->limit_price,
+            'limit_price'=>$post->price,
             'price'=>$post->price
         ];
         $result = $this->handle->addCoupon($id,$data);
