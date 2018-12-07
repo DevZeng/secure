@@ -60,7 +60,7 @@ if (!function_exists('getRedisData')){
     }
 }
 if (!function_exists('getUserData')){
-    function getRedisData($data,$key){
+    function getUserData($data,$key){
         $data = json_decode($data);
         return $data[$key];
     }
