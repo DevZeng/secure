@@ -24,6 +24,7 @@ Route::get('coupons','V3\CouponController@getEnableCoupons');
 Route::post('member/coupon','V3\CouponController@addMemberCoupon');
 Route::get('member/coupon','V3\CouponController@getMemberCoupon');
 Route::delete('member/coupon','V3\CouponController@delMemberCoupon');
+Route::post('member/user/coupon','V3\CouponController@addMemberUserCoupon');
 Route::group(['prefix'=>'v1'],function (){
     Route::post('login','V1\WeChatController@login');
     Route::get('test','V1\WeChatController@test');

@@ -215,8 +215,25 @@ class CouponController extends Controller
     }
     public function addMemberUserCoupon()
     {
-        $member = Input::get('member_id');
+        $member_id = Input::get('member_id');
         $end = Input::get('end');
-        $token = Input::get('token');
+        $uid = Input::get('uid');
+        $openid = Input::get('openid');
+        $memberCoupon = $this->handle->getMemberCoupon($member_id);
+        if (empty($memberCoupon)){
+            return 'SUCCESS';
+        }
+//        $userData = getRedisData($token);
+        for ($i=0;$i<$memberCoupon->number;$i++){
+            $data = [
+                'user_id'=>$uid,
+                'open_id'=>$openid,
+                'coupon_id'=>$memberCoupon->coupon_id,
+                'end'=>$end,
+                'store_id'=>0
+            ];
+            $this->handle->addUserCoupon2(0,$data);
+        }
+        return 'SUCCESS';
     }
 }

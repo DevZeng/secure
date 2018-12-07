@@ -109,6 +109,17 @@ trait CouponHandle
         }
         return false;
     }
+    public function addUserCoupon2($id,$data)
+    {
+        $userCoupon = $id?UserCoupon::find($id):new UserCoupon();
+        foreach ($data as $key => $value){
+            $userCoupon->$key = $value;
+        }
+        if ($userCoupon->save()){
+            return true;
+        }
+        return false;
+    }
     public function modifyUserCoupon($id,$data)
     {
         $coupon = UserCoupon::findOrFail($id);
