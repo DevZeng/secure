@@ -69,6 +69,10 @@ trait StoreHandle
             'data'=>$data
         ];
     }
+    public function getStoreCategory($id)
+    {
+        return StoreCategory::find($id);
+    }
     public function formatStoreCategories(&$categories)
     {
         if (empty($categories)){

@@ -151,8 +151,8 @@ class CouponController extends Controller
             }
             $store_id = $product->store_id;
         }
-        $user_id = getRedisData(Input::get('token'));
-        $coupons = $this->handle->getUserCoupons($user_id,$state,$page,$limit,$store_id);
+        $userData = getRedisData(Input::get('token'));
+        $coupons = $this->handle->getUserCoupons(getUserData($userData,'uid'),$state,$page,$limit,$store_id);
         $this->handle->formatUserCoupons($coupons['data']);
         return jsonResponse([
             'msg'=>'ok',
