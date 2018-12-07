@@ -59,6 +59,12 @@ if (!function_exists('getRedisData')){
         return $data;
     }
 }
+if (!function_exists('getUserData')){
+    function getRedisData($data,$key){
+        $data = json_decode($data);
+        return $data[$key];
+    }
+}
 /**
  *  返回校验消息
  */

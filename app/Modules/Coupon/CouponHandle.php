@@ -13,6 +13,7 @@ use App\Modules\Coupon\Model\Coupon;
 use App\Modules\Coupon\Model\CouponRecord;
 use App\Modules\Coupon\Model\CouponTask;
 use App\Modules\Coupon\Model\CouponType;
+use App\Modules\Coupon\Model\MemberCoupon;
 use App\Modules\Coupon\Model\UserCoupon;
 use App\Modules\Store\Model\Store;
 use Illuminate\Support\Facades\DB;
@@ -199,6 +200,28 @@ trait CouponHandle
             $task->$key = $value;
         }
         if ($task->save()){
+            return true;
+        }
+        return false;
+    }
+    public function delMemberCoupon($member_id)
+    {
+        return MemberCoupon::where('member_id','=',$member_id)->delete();
+    }
+    public function getMemberCoupon($member_id)
+    {
+        return MemberCoupon::where('member_id','=',$member_id)->first();
+    }
+    public function addMemberCoupon($member_id,$coupon_id,$number)
+    {
+        $memberCoupon = MemberCoupon::where('member_id','=',$member_id)->first();
+        if (empty($memberCoupon)){
+            $memberCoupon = new MemberCoupon();
+            $memberCoupon->member_id = $member_id;
+        }
+        $memberCoupon->coupon_id = $coupon_id;
+        $memberCoupon->number = $number;
+        if ($memberCoupon->save()){
             return true;
         }
         return false;

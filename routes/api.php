@@ -20,6 +20,10 @@ Route::post('pay/notify','V1\OrderController@payNotify');
 Route::get('user/orders','V1\OrderController@getUserOrders');
 Route::post('member/notify','V2\MemberController@memberNotify');
 Route::post('coupon/task','V3\CouponController@addCouponTask');
+Route::get('coupons','V3\CouponController@getEnableCoupons');
+Route::post('member/coupon','V3\CouponController@addMemberCoupon');
+Route::get('member/coupon','V3\CouponController@getMemberCoupon');
+Route::delete('member/coupon','V3\CouponController@delMemberCoupon');
 Route::group(['prefix'=>'v1'],function (){
     Route::post('login','V1\WeChatController@login');
     Route::get('test','V1\WeChatController@test');

@@ -177,4 +177,39 @@ class CouponController extends Controller
             ]);
         }
     }
+    public function addMemberCoupon(Request $post)
+    {
+        $member_id = $post->member_id;
+        $coupon_id = $post->coupon_id;
+        $number = $post->number;
+        if ($this->handle->addMemberCoupon($member_id,$coupon_id,$number)){
+            return jsonResponse([
+                'msg'=>'ok'
+            ]);
+        }
+        return jsonResponse([
+            'msg'=>'ERROR'
+        ],400);
+    }
+    public function getMemberCoupon()
+    {
+        $member_id = Input::get('member_id');
+        $memberCoupon = $this->handle->getMemberCoupon($member_id);
+        if (!empty($memberCoupon)){
+            $memberCoupon->coupon = $this->handle->getCoupon($memberCoupon->coupon_id);
+        }
+        return jsonResponse([
+            'msg'=>'ok',
+            'data'=>$memberCoupon
+        ]);
+    }
+    public function delMemberCoupon()
+    {
+        $member_id = Input::get('member_id');
+        if ($this->handle->delMemberCoupon($member_id)){
+            return jsonResponse([
+                'msg'=>'ok'
+            ]);
+        }
+    }
 }
