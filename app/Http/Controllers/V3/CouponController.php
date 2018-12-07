@@ -221,7 +221,7 @@ class CouponController extends Controller
         $openid = Input::get('openid');
         $memberCoupon = $this->handle->getMemberCoupon($member_id);
         if (empty($memberCoupon)){
-            return 'SUCCESS';
+            return 'ERROR';
         }
 //        $userData = getRedisData($token);
         for ($i=0;$i<$memberCoupon->number;$i++){
