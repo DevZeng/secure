@@ -206,7 +206,8 @@ trait CouponHandle
     }
     public function delMemberCoupon($member_id)
     {
-        return MemberCoupon::where('member_id','=',$member_id)->delete();
+        $coupon = MemberCoupon::where('member_id','=',$member_id)->first();
+        return $coupon->delete();
     }
     public function getMemberCoupon($member_id)
     {
