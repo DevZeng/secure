@@ -184,11 +184,14 @@ trait StoreHandle
     {
         return Store::find($id);
     }
-    public function getStores($name = '', $page, $limit)
+    public function getStores($name = '', $page=1, $limit=10,$hot=0)
     {
         $db = DB::table('stores');
         if ($name) {
             $db->where('name', 'like', $name);
+        }
+        if ($hot){
+            $db->where('hot','=',$hot-1);
         }
         $count = $db->count();
         $data = $db->orderBy('id', 'DESC')->limit($limit)->offset(($page - 1) * $limit)->get();
@@ -198,11 +201,14 @@ trait StoreHandle
         ];
     }
 
-    public function getStoresByGrid($category_id=0,$minLat,$minLon,$maxLat,$maxLon)
+    public function getStoresByGrid($category_id=0,$minLat,$minLon,$maxLat,$maxLon,$hot=0)
     {
         $db = Store::whereBetween('lat',[$minLat,$maxLat])->whereBetween('lon',[$minLon,$maxLon]);
         if ($category_id){
             $db->where('category_id','=',$category_id);
+        }
+        if ($hot){
+            $db->where('hot','=',$hot-1);
         }
         return $db->get()->toArray();
     }

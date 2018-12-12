@@ -121,7 +121,7 @@ class WxPay
         $unifiedOrder = $this->unifiedOrder($out_trade_no,$body,$total_fee,$notifyUrl,$ip);
 //        dd($unifiedOrder);
         if (!isset($unifiedOrder['prepay_id'])){
-            var_dump($unifiedOrder);
+            throw new Exception(500,"预下单失败！");
         }
         $this->prepay_id = $unifiedOrder['prepay_id'];
         $parameters = [

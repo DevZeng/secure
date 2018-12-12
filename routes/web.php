@@ -178,6 +178,7 @@ Route::group(['prefix'=>'v3','middleware'=>'cross'],function (){
     Route::get('prizes','V3\PrizeController@getPrizes');
     Route::post('prize','V3\PrizeController@addPrize');
     Route::delete('prize','V3\PrizeController@delPrize');
+    Route::post('hot/store','V3\StoreController@addHotStore');
 });
 
 Route::group(['prefix'=>'v4','middleware'=>'cross'],function () {

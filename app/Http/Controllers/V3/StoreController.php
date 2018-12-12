@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Validation\Rules\In;
 
 class StoreController extends Controller
 {
@@ -100,8 +101,9 @@ class StoreController extends Controller
         $category_id = Input::get('category_id');
         $limit = Input::get('limit',10);
         $page = Input::get('page');
+        $hot = Input::get('hot',0);
         $data = getAround($lat,$lon,10*1000);
-        $stores = $this->handle->getStoresByGrid($category_id,$data['minLat'],$data['maxLat'],$data['minLng'],$data['maxLng']);
+        $stores = $this->handle->getStoresByGrid($category_id,$data['minLat'],$data['maxLat'],$data['minLng'],$data['maxLng'],$hot);
         $this->handle->sortStores($stores,$lat,$lon);
         $stores = array_slice($stores,($page-1)*$limit,$limit);
         return jsonResponse([
@@ -120,4 +122,23 @@ class StoreController extends Controller
             'data'=>$types
         ]);
     }
+    public function addHotStore()
+    {
+        $store_id = Input::get('store_id');
+        $store = $this->handle->getStoreById($store_id);
+        $data = [
+            'hot'=>$store->hot==0?1:0
+        ];
+        if ($this->handle->addStore($store->user_id,$data)){
+            return jsonResponse([
+                'msg'=>'ok'
+            ]);
+        }
+        throw new \Exception('系统错误！');
+    }
+//    public function getHotStores()
+//    {
+//        $page = Input::get('page',1);
+//        $limit = Input::get('')
+//    }
 }
