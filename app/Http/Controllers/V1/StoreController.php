@@ -163,7 +163,7 @@ class StoreController extends Controller
         $id = $post->id;
         $store = $this->handle->getStoreById($id);
         $data = [
-            'manager'=>$post->maneger?$post->maneger:$store->maneger,
+            'manager'=>$post->manager?$post->manager:$store->manager,
             'lat'=>$post->lat?$post->lat:$store->lat,
             'lon'=>$post->lon?$post->lon:$store->lon,
             'address'=>$post->address?$post->address:$store->address,
