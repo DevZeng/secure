@@ -486,19 +486,19 @@ class ProductController extends Controller
     public function delCollect()
     {
         $id = Input::get('id');
-        $product_id = Input::get('product_id');
-        $userData = getRedisData(Input::get('token'));
-        $user_id = getUserData($userData,'uid');
-        if ($user_id){
-            if ($this->handle->delCollectByProductId($user_id,$product_id)){
-                return jsonResponse([
-                    'msg'=>'ok'
-                ]);
-            }
-            return jsonResponse([
-                'msg'=>'操作失败！'
-            ]);
-        }
+//        $product_id = Input::get('product_id');
+//        $userData = getRedisData(Input::get('token'));
+//        $user_id = getUserData($userData,'uid');
+//        if ($user_id){
+//            if ($this->handle->delCollectByProductId($user_id,$product_id)){
+//                return jsonResponse([
+//                    'msg'=>'ok'
+//                ]);
+//            }
+//            return jsonResponse([
+//                'msg'=>'操作失败！'
+//            ]);
+//        }
         if ($this->handle->delCollect($id)){
             return jsonResponse([
                 'msg'=>'ok'
