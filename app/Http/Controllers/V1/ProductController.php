@@ -485,7 +485,8 @@ class ProductController extends Controller
     {
         $id = Input::get('id');
         $product_id = Input::get('product_id');
-        $user_id = getRedisData(Input::get('token'));
+        $userData = getRedisData(Input::get('token'));
+        $user_id = getUserData($userData,'uid');
         if ($user_id){
             if ($this->handle->delCollectByProductId($user_id,$product_id)){
                 return jsonResponse([
