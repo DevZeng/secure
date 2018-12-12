@@ -30,7 +30,7 @@ class OrderController extends Controller
     public function createOrder(Request $post)
     {
         $userData = getRedisData($post->token);
-        $userData = json_decode($userData);
+//        $userData = json_decode($userData);
         $user_id = $userData['uid'];
         $open_id = $userData['openid'];
         $address = Address::find($post->address);
