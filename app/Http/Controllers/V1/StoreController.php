@@ -152,11 +152,29 @@ class StoreController extends Controller
             'notify_id'=>$post->notify_id,
             'user_id'=>$user_id
         ];
-        if ($this->handle->addStore(0,$data)){
+        if ($this->handle->addStore($user_id,$data)){
             return jsonResponse([
                 'msg'=>'ok'
             ]);
         }
+    }
+    public function editStore(Request $post)
+    {
+        $id = $post->id;
+        $store = $this->handle->getStoreById($id);
+        $data = [
+            'manager'=>$post->maneger?$post->maneger:$store->maneger,
+            'lat'=>$post->lat?$post->lat:$store->lat,
+            'lon'=>$post->lon?$post->lon:$store->lon,
+            'address'=>$post->address?$post->address:$store->address,
+            'document'=>$post->document?$post->document:$store->document,
+        ];
+        if ($this->handle->addStore($store->user_id,$data)){
+            return jsonResponse([
+                'msg'=>'ok'
+            ]);
+        }
+        throw new \Exception('系统错误！');
     }
     public function getUserStore()
     {

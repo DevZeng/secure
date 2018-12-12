@@ -51,7 +51,7 @@ Route::group(['prefix'=>'v1','middleware'=>'cross'],function (){
         Route::get('product/categories','V1\ProductController@getProductCategories')->middleware('permission:productCategoryList');
         Route::post('edit/product/category','V1\ProductController@editProductCategory')->middleware('permission:productCategoryList');
         Route::delete('product/category','V1\ProductController@delProductCategory')->middleware('permission:productCategoryDel');
-        Route::post('store','V1\StoreController@addStore')->middleware('permission:myStore');
+        Route::put('store','V1\StoreController@editStore')->middleware('permission:myStore');
         Route::get('user/store','V1\StoreController@getUserStore');
         Route::put('user/store','V1\StoreController@editUserStore');
         Route::get('stores','V1\StoreController@getStores')->middleware('permission:storeList');
