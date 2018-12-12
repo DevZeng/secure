@@ -324,6 +324,7 @@ class ProductController extends Controller
         $id = Input::get('id');
         $product = $this->handle->getProduct($id);
         $userData = getRedisData(Input::get('token'));
+//        dump($userData);
         $user_id = $userData?getUserData($userData,'uid'):0;
 //        $user_id = getRedisData(Input::get('token'))?getUserData(getRedisData(Input::get('token')),'uid'):0;
         $product->collect = $this->handle->checkCollect($user_id,$product->id);

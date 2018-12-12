@@ -806,8 +806,6 @@ trait ProductHandle
 
     public function checkCollect($user_id, $product_id)
     {
-        dump($user_id);
-        dump($product_id);
         $count = ProductCollect::where('user_id', '=', $user_id)->where('product_id', '=', $product_id)->count();
         return $count;
     }
