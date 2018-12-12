@@ -61,6 +61,7 @@ if (!function_exists('getRedisData')){
 }
 if (!function_exists('getUserData')){
     function getUserData($data,$key){
+        dump($data);
         $data = json_decode($data);
         dd($data);
         return $data->$key;
