@@ -473,7 +473,8 @@ class ProductController extends Controller
     }
     public function getCollects()
     {
-        $user_id = getRedisData(Input::get('token'));
+        $userData = getRedisData(Input::get('token'));
+        $user_id = getUserData($userData,'uid');
         $page = Input::get('page',1);
         $limit = Input::get('limit',10);
         $collects = $this->handle->getUserCollect($user_id,$page,$limit);
