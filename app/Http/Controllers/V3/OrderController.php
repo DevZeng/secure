@@ -235,7 +235,10 @@ class OrderController extends Controller
     }
     public function createOrder(Request $post)
     {
-        $user_id = getRedisData($post->token);
+        $userData = getRedisData($post->token);
+//        $userData = json_decode($userData);
+        $user_id = getUserData($userData,'uid');
+        $open_id = getUserData($userData,'openid');
         $address = Address::find($post->address);
         $groupNumber = self::makePaySn($user_id);
         $stores = $post->stores;
@@ -276,7 +279,8 @@ class OrderController extends Controller
                     'state' => 'created',
                     'group_number' => $groupNumber,
                     'store_id' => $item['id'],
-                    'delivery'=>$delivery
+                    'delivery'=>$delivery,
+                    'open_id'=>$open_id
                 ];
                 $order_id = $this->handle->addOrder(0, $data);
 
