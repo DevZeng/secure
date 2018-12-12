@@ -300,7 +300,8 @@ class OrderController extends Controller
     public function payOrder(Request $post)
     {
         $url = $post->getScheme() . '://' . $post->getHttpHost() . '/api/pay/notify';
-        $user_id = getRedisData($post->token);
+        $userData = getRedisData($post->token);
+        $user_id = getUserData($userData,'uid');
         $order_id = $post->order_id;
         $repay = $post->repay?$post->repay:0;
         $open_id = $post->open_id;
