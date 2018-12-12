@@ -236,7 +236,7 @@ class OrderController extends Controller
     public function createOrder(Request $post)
     {
         $userData = getRedisData($post->token);
-        dd($userData);
+//        dd($userData);
 //        $userData = json_decode($userData);
         $user_id = getUserData($userData,'uid');
         $open_id = getUserData($userData,'openid');
