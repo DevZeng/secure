@@ -100,7 +100,7 @@ trait OrderHandle
     }
     public function getMyOrders($user_id,$page=1,$limit=10,$state='',$order_id=null)
     {
-        $db = Order::where('user_id','=',$user_id);
+        $db = Order::where('open_id','=',$user_id);
         if ($state){
             if ($state=='finished'){
                 $db->whereIn('state',['closed','finished']);
