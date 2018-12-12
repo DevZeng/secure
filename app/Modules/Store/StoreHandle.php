@@ -184,7 +184,7 @@ trait StoreHandle
     {
         return Store::find($id);
     }
-    public function getStores($name = '', $page=1, $limit=10,$hot=0)
+    public function getStores($name = '', $page=1, $limit=10,$hot=0,$category_id=0)
     {
         $db = DB::table('stores');
         if ($name) {
@@ -192,6 +192,9 @@ trait StoreHandle
         }
         if ($hot){
             $db->where('hot','=',$hot-1);
+        }
+        if ($category_id){
+            $db->where('category_id','=',$category_id);
         }
         $count = $db->count();
         $data = $db->orderBy('id', 'DESC')->limit($limit)->offset(($page - 1) * $limit)->get();

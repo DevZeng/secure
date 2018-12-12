@@ -241,7 +241,8 @@ class StoreController extends Controller
         $page = Input::get('page',1);
         $limit = Input::get('limit',10);
         $name = Input::get('name');
-        $data = $this->handle->getStores($name,$page,$limit);
+        $type = Input::get('type2');
+        $data = $this->handle->getStores($name,$page,$limit,0,$type);
         return jsonResponse([
             'msg'=>'ok',
             'data'=>$data
