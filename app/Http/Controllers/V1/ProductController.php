@@ -323,7 +323,9 @@ class ProductController extends Controller
     {
         $id = Input::get('id');
         $product = $this->handle->getProduct($id);
-        $user_id = getRedisData(Input::get('token'))?getUserData(getRedisData(Input::get('token')),'uid'):0;
+        $userData = getRedisData(Input::get('token'));
+        $user_id = $userData?getUserData($userData,'uid'):0;
+//        $user_id = getRedisData(Input::get('token'))?getUserData(getRedisData(Input::get('token')),'uid'):0;
         $product->collect = $this->handle->checkCollect($user_id,$product->id);
         $product->express = $this->handle->getStoreExpress($product->store_id);
         $config = $this->handle->getDiscountConfig();
