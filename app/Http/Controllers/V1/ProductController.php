@@ -458,7 +458,8 @@ class ProductController extends Controller
     public function addCollect()
     {
         $product_id = Input::get('product_id');
-        $user_id = getRedisData(Input::get('token'));
+        $userData = getRedisData(Input::get('token'));
+        $user_id = getUserData($userData,'uid');
         $count = $this->handle->checkCollect($user_id,$product_id);
         if ($count!=0){
             return jsonResponse([
