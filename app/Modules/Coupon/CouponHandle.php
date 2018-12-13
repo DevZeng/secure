@@ -155,7 +155,7 @@ trait CouponHandle
     }
     public function getUserCoupons($user_id,$state=0,$page=1,$limit=10,$store_id=0)
     {
-        $db = UserCoupon::where('open_id','=',$user_id);
+        $db = UserCoupon::where('user_id','=',$user_id);
         if ($state){
             $db->where('state','=',$state);
         }
