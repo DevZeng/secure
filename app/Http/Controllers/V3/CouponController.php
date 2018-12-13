@@ -140,17 +140,7 @@ class CouponController extends Controller
         $page = Input::get('page');
         $limit = Input::get('limit');
         $state = Input::get('state',1);
-        $product_id = Input::get('product_id');
         $store_id = Input::get('store_id',0);
-        if ($product_id){
-            $product = $this->handle->getProductById($product_id);
-            if (empty($product)){
-                return jsonResponse([
-                    'msg'=>'没找到该商品！'
-                ],404);
-            }
-            $store_id = $product->store_id;
-        }
         $userData = getRedisData(Input::get('token'));
         $coupons = $this->handle->getUserCoupons(getUserData($userData,'uid'),$state,$page,$limit,$store_id);
         $this->handle->formatUserCoupons($coupons['data']);
@@ -223,6 +213,7 @@ class CouponController extends Controller
         if (empty($memberCoupon)){
             return 'ERROR';
         }
+        $coupon = $this->handle->getCoupon($memberCoupon->coupon_id);
 //        $userData = getRedisData($token);
         for ($i=0;$i<$memberCoupon->number;$i++){
             $data = [
@@ -230,7 +221,7 @@ class CouponController extends Controller
                 'open_id'=>$openid,
                 'coupon_id'=>$memberCoupon->coupon_id,
                 'end'=>$end,
-                'store_id'=>0
+                'store_id'=>$coupon->store_id
             ];
             $this->handle->addUserCoupon2(0,$data);
         }
