@@ -113,7 +113,7 @@ trait OrderHandle
         }
         $count = $db->count();
         $data = $db->orderBy('id','DESC')->limit($limit)->offset(($page-1)*$limit)->get()->toArray();
-        //$data = $this->formatMyOrders($data);
+        $data = $this->formatMyOrders($data);
         return [
             'data'=>$data,
             'count'=>$count
