@@ -368,7 +368,7 @@ class OrderController extends Controller
     }
     public function getUserOrders()
     {
-        $user_id = Input::get('user_id');
+        $user_id = Input::get('openid');
         $state = Input::get('state', '');
         $page = Input::get('page', 1);
         $limit = Input::get('limit', 10);
