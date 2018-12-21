@@ -720,7 +720,8 @@ class OrderController extends Controller
 
     public function countUserOrders()
     {
-        $user_id = getRedisData(Input::get('token'));
+        $userData = getRedisData(Input::get('token'));
+        $user_id = getUserData($userData,'openid');
         $data = [
             'created' => $this->handle->countUserOrders($user_id, 'created'),
             'paid' => $this->handle->countUserOrders($user_id, 'paid'),

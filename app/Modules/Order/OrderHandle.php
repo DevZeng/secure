@@ -432,7 +432,7 @@ trait OrderHandle
     }
     public function countUserOrders($user_id,$state)
     {
-        return Order::where('user_id','=',$user_id)->where('state','=',$state)->count();
+        return Order::where('open_id','=',$user_id)->where('state','=',$state)->count();
     }
     public function countSales($store_id=0,$created='')
     {
